@@ -1,0 +1,8 @@
+{ "memories": [
+    {"name": "free45_1rw_d512_w64" ,  "width":  64, "depth":  512, "banks": 1},
+    {"name": "free45_1rw_d128_w168",  "width": 168, "depth":  128, "banks": 1},
+    {"name": "free45_1rw_d128_w15" ,  "width":  15, "depth":  128, "banks": 1}
+  ],
+  "dont_compile": [
+  ]
+}
