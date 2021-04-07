@@ -32,7 +32,6 @@ module bsg_chip
   `declare_bsg_cache_pkt_s(addr_width_gp, data_width_gp);
   bsg_cache_pkt_s cache_pkt_li;
   logic cache_pkt_v_li, cache_pkt_ready_lo;
-
   bsg_two_fifo
    #(.width_p(cache_pkt_width_lp))
    in_fifo
@@ -48,23 +47,27 @@ module bsg_chip
      ,.yumi_i(cache_pkt_ready_lo & cache_pkt_v_li)
      );
 
-  logic [data_width_gp-1:0] cache_data_lo;
-  logic cache_data_v_lo, cache_data_ready_li;
-  bsg_two_fifo
-   #(.width_p(data_width_gp))
-   out_fifo
-    (.clk_i(clk_i)
-     ,.reset_i(reset_i)
+  logic slow_clk_li, slow_reset_li;
+  assign slow_clk_li = clk_i;
+  assign slow_reset_li = reset_i;
 
-     ,.data_i(cache_data_lo)
-     ,.v_i(cache_data_v_lo)
-     ,.ready_o(cache_data_ready_li)
+  logic slow_v_li, slow_ready_lo;
+  bsg_fifo_periodic
+   #(.a_period_p(1), .b_period_p(1))
+   divide
+    (.a_clk_i(clk_i)
+     ,.a_reset_i(reset_i)
+     ,.a_v_i(cache_pkt_v_li)
+     ,.a_ready_and_o(cache_pkt_ready_lo)
 
-     ,.data_o(data_o)
-     ,.v_o(v_o)
-     ,.yumi_i(yumi_i)
+     ,.b_clk_i(slow_clk_li)
+     ,.b_reset_i(slow_reset_li)
+     ,.b_v_o(slow_v_li)
+     ,.b_ready_and_i(slow_ready_lo)
      );
 
+  logic [data_width_gp-1:0] cache_data_lo;
+  logic cache_data_v_lo, cache_data_ready_li;
   bsg_cache
    #(.addr_width_p(addr_width_gp)
      ,.data_width_p(data_width_gp)
@@ -77,8 +80,8 @@ module bsg_chip
      ,.reset_i(reset_i)
 
      ,.cache_pkt_i(cache_pkt_li)
-     ,.v_i(cache_pkt_v_li)
-     ,.ready_o(cache_pkt_ready_lo)
+     ,.v_i(slow_v_li)
+     ,.ready_o(slow_ready_lo)
 
      ,.data_o(cache_data_lo)
      ,.v_o(cache_data_v_lo)
@@ -97,6 +100,21 @@ module bsg_chip
      ,.dma_data_yumi_i(dma_data_yumi_i)
 
      ,.v_we_o()
+     );
+
+  bsg_two_fifo
+   #(.width_p(data_width_gp))
+   out_fifo
+    (.clk_i(clk_i)
+     ,.reset_i(reset_i)
+
+     ,.data_i(cache_data_lo)
+     ,.v_i(cache_data_v_lo)
+     ,.ready_o(cache_data_ready_li)
+
+     ,.data_o(data_o)
+     ,.v_o(v_o)
+     ,.yumi_i(yumi_i)
      );
 
 endmodule

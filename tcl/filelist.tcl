@@ -25,6 +25,7 @@ set SVERILOG_SOURCE_FILES [join "
     $basejump_stl_dir/bsg_dataflow/bsg_fifo_1r1w_small.v
     $basejump_stl_dir/bsg_dataflow/bsg_fifo_1r1w_small_unhardened.v
     $basejump_stl_dir/bsg_dataflow/bsg_fifo_tracker.v
+    $basejump_stl_dir/bsg_dataflow/bsg_fifo_periodic.v
     $basejump_stl_dir/bsg_dataflow/bsg_two_fifo.v
 
     $basejump_stl_dir/bsg_mem/bsg_mem_1r1w.v
@@ -38,6 +39,7 @@ set SVERILOG_SOURCE_FILES [join "
     $basejump_stl_dir/bsg_mem/bsg_mem_1rw_sync_mask_write_byte_synth.v
 
     $basejump_stl_dir/bsg_misc/bsg_counter_clear_up.v
+    $basejump_stl_dir/bsg_misc/bsg_counter_clear_up_one_hot.v
     $basejump_stl_dir/bsg_misc/bsg_circular_ptr.v
     $basejump_stl_dir/bsg_misc/bsg_decode.v
     $basejump_stl_dir/bsg_misc/bsg_decode_with_v.v
