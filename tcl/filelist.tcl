@@ -38,9 +38,11 @@ set SVERILOG_SOURCE_FILES [join "
     $basejump_stl_dir/bsg_mem/bsg_mem_1rw_sync_mask_write_byte_banked.v
     $basejump_stl_dir/bsg_mem/bsg_mem_1rw_sync_mask_write_byte_synth.v
 
+    $basejump_stl_dir/bsg_misc/bsg_buf.v
     $basejump_stl_dir/bsg_misc/bsg_counter_clear_up.v
     $basejump_stl_dir/bsg_misc/bsg_counter_clear_up_one_hot.v
     $basejump_stl_dir/bsg_misc/bsg_circular_ptr.v
+    $basejump_stl_dir/bsg_misc/bsg_counter_clock_downsample.v
     $basejump_stl_dir/bsg_misc/bsg_decode.v
     $basejump_stl_dir/bsg_misc/bsg_decode_with_v.v
     $basejump_stl_dir/bsg_misc/bsg_dff.v
@@ -50,12 +52,19 @@ set SVERILOG_SOURCE_FILES [join "
     $basejump_stl_dir/bsg_misc/bsg_mux.v
     $basejump_stl_dir/bsg_misc/bsg_mux_bitwise.v
     $basejump_stl_dir/bsg_misc/bsg_mux_segmented.v
+    $basejump_stl_dir/bsg_misc/bsg_muxi2_gatestack.v
+    $basejump_stl_dir/bsg_misc/bsg_nand.v
+    $basejump_stl_dir/bsg_misc/bsg_nor3.v
     $basejump_stl_dir/bsg_misc/bsg_lru_pseudo_tree_backup.v
     $basejump_stl_dir/bsg_misc/bsg_lru_pseudo_tree_decode.v
     $basejump_stl_dir/bsg_misc/bsg_lru_pseudo_tree_encode.v
     $basejump_stl_dir/bsg_misc/bsg_priority_encode.v
     $basejump_stl_dir/bsg_misc/bsg_priority_encode_one_hot_out.v
+    $basejump_stl_dir/bsg_misc/bsg_reduce.v
     $basejump_stl_dir/bsg_misc/bsg_scan.v
+    $basejump_stl_dir/bsg_misc/bsg_strobe.v
+    $basejump_stl_dir/bsg_misc/bsg_xor.v
+    $basejump_stl_dir/bsg_misc/bsg_xnor.v
 
     $bsg_designs_target_dir/v/bsg_chip.v
 "]
